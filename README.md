@@ -1,17 +1,30 @@
 # KMInjector
-Kernel-mode DLL injection using direct PE mapping and RtlCreateUserThread. Bypasses user-mode detection by operating entirely in kernel space with manual import resolution.
+Kernel-mode DLL injection using direct PE mapping and `RtlCreateUserThread`. Bypasses user-mode detection by operating entirely in kernel space.
 
-Tested on Windows 11 24h2
+## Quick Start
+```cmd
+# Enable test signing
+bcdedit /set testsigning on
+# Restart required
 
-## Usage
-```
-UM.exe <target_pid> <path_to_dll>
+# Install and start driver
+sc create KMInjector type= kernel binPath= "C:\path\to\KMInjector.sys"
+sc start KMInjector
+
+# Inject DLL
+UM.exe <pid> <dll_path>
 ```
 
-Example:
+## Example: Successful Injection into Notepad
+
+![Successful Injection Demo](KMInjector/2025-09-15%2014_39_54-Window.png)
+
+**Command:**
+```cmd
+UM.exe 5636 ExampleDLL.dll
 ```
-UM.exe 1234 C:\path\to\your\DLL.dll
-```
+
+**Result:** All 6 PE sections mapped successfully, thread created and executed in target process.
 
 ## How it works
 1. **PE Analysis**: Parses the DLL's PE headers to extract entry point and image size

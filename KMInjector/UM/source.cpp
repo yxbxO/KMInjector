@@ -4,7 +4,7 @@
 #include <vector>
 #include <fstream>
 
-#define IOCTL_INJECTOR_RUN CTL_CODE(FILE_DEVICE_UNKNOWN, 0x801, METHOD_BUFFERED, FILE_READ_DATA | FILE_WRITE_DATA)
+#define IOCTL_INJECTOR_RUN							CTL_CODE(FILE_DEVICE_UNKNOWN, 0x801, METHOD_BUFFERED, FILE_READ_DATA | FILE_WRITE_DATA)
 #define DeviceName									L"\\\\.\\KMInjector"
 
 typedef struct _INJECTION_INFO
@@ -29,7 +29,6 @@ int main(int argc, char* argv[]) {
 	}
 
 	DWORD pid = atoi(argv[1]);
-	//HANDLE hDevice = CreateFile(DeviceName, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	HANDLE hDevice = CreateFile(DeviceName, GENERIC_READ | GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 	if (hDevice == INVALID_HANDLE_VALUE) {
 		printf("Failed to open device. Error: %lu\n", GetLastError());
@@ -45,7 +44,7 @@ int main(int argc, char* argv[]) {
 
 	_INJECTION_INFO info;
 	info.TargetPid = pid;
-	info.DllBuffer = fileBuffer.data(); // Not used in this example
+	info.DllBuffer = fileBuffer.data();
 
 	DWORD bytesReturned;
 	BOOL result = DeviceIoControl(hDevice, IOCTL_INJECTOR_RUN, &info, sizeof(_INJECTION_INFO), NULL, 0, &bytesReturned, NULL);
@@ -56,6 +55,5 @@ int main(int argc, char* argv[]) {
 	}
 	printf("IOCTL sent successfully to inject into PID %lu\n", pid);
 	CloseHandle(hDevice);
-
 	return 0;
 }
