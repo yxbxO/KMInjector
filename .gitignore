@@ -1,0 +1,106 @@
+# Build directories
+/build/
+/out/
+build-*
+backend/build/
+**/build/
+**/out/
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+*.dir/
+
+# Compiled files
+*.exe
+*.dll
+*.lib
+*.obj
+*.o
+*.a
+*.so
+*.dylib
+*.pdbF
+*.ilk
+*.exp
+*.manifest
+*.tlog
+*.recipe
+*.idb
+*.lastbuildstate
+
+# vcpkg
+vcpkg_installed/
+.vcpkg-root
+
+# IDE files
+.vs/
+.vscode/
+*.suo
+CMakeSettings.json
+
+# Environment and config files
+.env*
+config/production.json
+config/local.json
+secrets.json
+
+# Database files
+*.db
+*.sqlite*
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+
+# Node modules (if frontend uses npm)
+node_modules/
+
+# Development artifacts
+*.tmp.cpp
+
+# Build artifacts cleanup
+# Use scripts/cleanup_build.bat to clean these safely
+*.sdf
+*.opensdf
+*.ipch
+*.aps
+*.ncb
+*.opendb
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+
+# Windows Driver Development specific
+*.sys
+*.cer
+*.cat
+*.iobj
+*.ipdb
+*.vcxproj.FileListAbsolute.txt
+
+# Build output directories
+**/x64/Release/
+**/Release/
+**/Debug/
+**/x64/Debug/
+
+# Driver signing artifacts
+*.p7b
+*.spc
+*.pvk
